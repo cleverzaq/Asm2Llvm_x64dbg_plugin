@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="bddisasm\bddisasm">
+      <UniqueIdentifier>{59082c7d-b110-461c-b9a5-e7dd0ba2e192}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bddisasm">
+      <UniqueIdentifier>{d4c37f51-b9d4-4666-90e7-7a445f953b4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bddisasm\bddisasm\include">
+      <UniqueIdentifier>{7073b37f-1c23-4245-982d-56164a9aafd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bddisasm\inc">
+      <UniqueIdentifier>{4afe4b4f-0c38-41b6-a762-8c4a00cac3a3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="bddisasm\bddisasm\bddisasm.c">
+      <Filter>bddisasm\bddisasm</Filter>
+    </ClCompile>
+    <ClCompile Include="bddisasm\bddisasm\bdformat.c">
+      <Filter>bddisasm\bddisasm</Filter>
+    </ClCompile>
+    <ClCompile Include="bddisasm\bddisasm\bdhelpers.c">
+      <Filter>bddisasm\bddisasm</Filter>
+    </ClCompile>
+    <ClCompile Include="bddisasm\bddisasm\crt.c">
+      <Filter>bddisasm\bddisasm</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin.cpp" />
+    <ClCompile Include="pluginmain.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="bddisasm\bddisasm\include\instructions.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\bddisasm\include\mnemonics.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\bddisasm\include\nd_crt.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\bddisasm\include\prefixes.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\bddisasm\include\tabledefs.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\bddisasm\include\table_evex.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\bddisasm\include\table_root.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\bddisasm\include\table_vex.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\bddisasm\include\table_xop.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\inc\bddisasm.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\inc\constants.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\inc\cpuidflags.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\inc\disasmstatus.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\inc\disasmtypes.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\inc\registers.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="bddisasm\inc\version.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="Asm2Llvm.h" />
+    <ClInclude Include="plugin.h" />
+    <ClInclude Include="pluginmain.h" />
+  </ItemGroup>
+</Project>
