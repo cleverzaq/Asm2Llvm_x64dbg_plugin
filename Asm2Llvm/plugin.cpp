@@ -1,29 +1,36 @@
 #include "plugin.h"
 #include "Asm2LLvm.h"
+#include <map>
 
 enum class MenuEntries {
 	ASM2LLVM,
+	REGISTERS
 };
 
-bool Begin(int argc, char** argv) {
+bool Begin(int argc, char** argv)
+{
 	return true;
 }
 
 #define COMMAND_BEGIN "Asm2LLVM"
 
-bool pluginInit(PLUG_INITSTRUCT* initStruct) {
+bool pluginInit(PLUG_INITSTRUCT* initStruct)
+{
 	_plugin_registercommand(pluginHandle, COMMAND_BEGIN, Begin, true);
 	return true;
 }
 
-void pluginStop() {}
+void pluginStop()
+{
 
-void pluginSetup() {
-	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::ASM2LLVM), "&LLVM IR");
-	_plugin_menuentrysethotkey(pluginHandle, int(MenuEntries::ASM2LLVM), "T");
 }
 
-#define CHECK(BOOLVAR, IFTRUE, ELSE)	((BOOLVAR) == true ? (IFTRUE) : (ELSE))
+void pluginSetup()
+{
+	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::ASM2LLVM), "&LLVM IR");
+	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::REGISTERS), "&Registers");
+	_plugin_menuentrysethotkey(pluginHandle, int(MenuEntries::ASM2LLVM), "T");
+}
 
 bool Is64Bit()
 {
@@ -40,6 +47,8 @@ bool Is64Bit()
 #pragma comment(lib, "Asm2Llvm_Win32.lib")
 #endif
 
+#define CHECK(BOOLVAR, IFTRUE, ELSE) ((BOOLVAR) == true ? (IFTRUE) : (ELSE))
+
 INSTRUX Decode(LPVOID addr)
 {
 	INSTRUX ix;
@@ -47,7 +56,15 @@ INSTRUX Decode(LPVOID addr)
 	return ix;
 }
 
-void GetBlockAndConvert()
+std::map<cpu_reg, std::string> reg_map()
+{
+	return { { cRAX, "RAX" }, { cRCX, "RCX" }, { cRDX, "RDX" }, { cRBX, "RBX" }, { cRSP, "RSP" }, { cRBP, "RBP" }, { cRSI, "RSI" }, { cRDI, "RDI" },
+			 { cR8, "R8" }, { cR9, "R9" }, { cR10, "R10" }, { cR11, "R11" }, { cR12, "R12" }, { cR13, "R13" }, { cR14, "R14" }, { cR15, "R15" },
+			 { cRFLAGS, "RFLAGS" }
+	};
+}
+
+void GetBlockAndConvert(enum MenuEntries entry)
 {
 	BridgeCFGraphList graphList;
 	GuiGetCurrentGraph(&graphList);
@@ -83,16 +100,37 @@ void GetBlockAndConvert()
 	}
 
 	Asm2Llvm asm2llvm;
-	Options options;
-	options.optimize = true;
-	std::string	ir = asm2llvm.Asm2LlvmFnc(block, options);
-	_plugin_logprintf("[" PLUGIN_NAME "]\n%s\n", ir.c_str());
+
+	switch (entry) {
+	case MenuEntries::ASM2LLVM:
+	{
+		Options options;
+		options.optimize = true;
+		options.messagebox = true;
+		std::string ir = asm2llvm.Asm2LLVM(block, options);
+		_plugin_logprintf("[" PLUGIN_NAME "]\n%s\n", ir.c_str());
+	} break;
+
+	case MenuEntries::REGISTERS:
+	{
+		_plugin_logprintf("[" PLUGIN_NAME "]\n");
+		std::map<cpu_reg, uintptr_t> mreg = asm2llvm.GetRegValue(block);
+		for (const auto& m : mreg) {
+			_plugin_logprintf("%s = %016llx\n", reg_map()[m.first].c_str(), m.second);
+		}
+ 	} break;
+	}
 }
 
-PLUG_EXPORT void CBMENUENTRY(CBTYPE cbType, PLUG_CB_MENUENTRY* info) {
-	switch((MenuEntries)info->hEntry) {
+PLUG_EXPORT void CBMENUENTRY(CBTYPE cbType, PLUG_CB_MENUENTRY* info)
+{
+	switch(MenuEntries(info->hEntry)) {
 	case MenuEntries::ASM2LLVM:
-		GetBlockAndConvert();
+		GetBlockAndConvert(MenuEntries(info->hEntry));
+		return;
+
+	case MenuEntries::REGISTERS:
+		GetBlockAndConvert(MenuEntries(info->hEntry));
 		return;
 	}
 }
