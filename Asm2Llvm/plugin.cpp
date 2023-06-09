@@ -3,7 +3,11 @@
 #include <map>
 
 enum class MenuEntries {
-	ASM2LLVM,
+	ASM2LLVM_VCPU_OPT,
+	ASM2LLVM_VCPU_NO_OPT,
+	ASM2LLVM_NATIVE_OPT,
+	ASM2LLVM_NATIVE_NO_OPT,
+	ASSEMBLY,
 	REGISTERS
 };
 
@@ -12,24 +16,27 @@ bool Begin(int argc, char** argv)
 	return true;
 }
 
-#define COMMAND_BEGIN "Asm2LLVM"
-
 bool pluginInit(PLUG_INITSTRUCT* initStruct)
 {
-	_plugin_registercommand(pluginHandle, COMMAND_BEGIN, Begin, true);
+	_plugin_registercommand(pluginHandle, "Asm2LLVM", Begin, true);
 	return true;
 }
 
 void pluginStop()
 {
-
 }
 
 void pluginSetup()
 {
-	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::ASM2LLVM), "&LLVM IR");
+	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::ASM2LLVM_VCPU_OPT), "&LLVM IR VCPU Optimized");
+	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::ASM2LLVM_VCPU_NO_OPT), "&LLVM IR VCPU Unoptimized");
+	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::ASM2LLVM_NATIVE_OPT), "&LLVM IR Native Optimized");
+	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::ASM2LLVM_NATIVE_NO_OPT), "&LLVM IR Native Unoptimized");
+	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::ASSEMBLY), "&Assembly");
 	_plugin_menuaddentry(hMenuGraph, int(MenuEntries::REGISTERS), "&Registers");
-	_plugin_menuentrysethotkey(pluginHandle, int(MenuEntries::ASM2LLVM), "T");
+
+	_plugin_menuentrysethotkey(pluginHandle, int(MenuEntries::ASM2LLVM_VCPU_OPT), "T");
+	_plugin_menuentrysethotkey(pluginHandle, int(MenuEntries::ASSEMBLY), "Y");
 }
 
 bool Is64Bit()
@@ -40,12 +47,6 @@ bool Is64Bit()
 	return false;
 #endif
 }
-
-#ifdef _WIN64
-#pragma comment(lib, "Asm2Llvm_x64.lib")
-#else
-#pragma comment(lib, "Asm2Llvm_Win32.lib")
-#endif
 
 #define CHECK(BOOLVAR, IFTRUE, ELSE) ((BOOLVAR) == true ? (IFTRUE) : (ELSE))
 
@@ -59,27 +60,27 @@ INSTRUX Decode(LPVOID addr)
 std::map<cpu_reg, std::string> reg_map()
 {
 	return { { cRAX, "RAX" }, { cRCX, "RCX" }, { cRDX, "RDX" }, { cRBX, "RBX" }, { cRSP, "RSP" }, { cRBP, "RBP" }, { cRSI, "RSI" }, { cRDI, "RDI" },
-			 { cR8, "R8" }, { cR9, "R9" }, { cR10, "R10" }, { cR11, "R11" }, { cR12, "R12" }, { cR13, "R13" }, { cR14, "R14" }, { cR15, "R15" },
+			 { cR8,  "R8"  }, { cR9,  "R9"  }, { cR10, "R10" }, { cR11, "R11" }, { cR12, "R12" }, { cR13, "R13" }, { cR14, "R14" }, { cR15, "R15" },
 			 { cRFLAGS, "RFLAGS" }
 	};
 }
 
-void GetBlockAndConvert(enum MenuEntries entry)
+void TranslateBlock(enum MenuEntries entry)
 {
 	BridgeCFGraphList graphList;
 	GuiGetCurrentGraph(&graphList);
 	BridgeCFGraph currentGraph(&graphList, true);
 
-    if (currentGraph.nodes.empty())
-        return;
+	if (currentGraph.nodes.empty())
+		return;
 
 	std::vector<std::pair<uintptr_t, uintptr_t>> ranges;
-    for (const auto& nodeIt : currentGraph.nodes) {
+	for (const auto& nodeIt : currentGraph.nodes) {
 		const BridgeCFNode& node = nodeIt.second;
 		uintptr_t start = node.instrs.empty() ? node.start : node.instrs[0].addr;
 		uintptr_t end = node.instrs.empty() ? node.end : node.instrs[node.instrs.size() - 1].addr + Decode(LPVOID(node.instrs[node.instrs.size() - 1].data)).Length;
 		ranges.push_back(std::make_pair(start, end));
-    }
+	}
 
 	std::vector<std::pair<INSTRUX, ND_UINT64>> block;
 	for (const auto& range : ranges) {
@@ -102,10 +103,25 @@ void GetBlockAndConvert(enum MenuEntries entry)
 	Asm2Llvm asm2llvm;
 
 	switch (entry) {
-	case MenuEntries::ASM2LLVM:
+	case MenuEntries::ASM2LLVM_VCPU_OPT:
+	case MenuEntries::ASM2LLVM_VCPU_NO_OPT:
+	case MenuEntries::ASM2LLVM_NATIVE_OPT:
+	case MenuEntries::ASM2LLVM_NATIVE_NO_OPT:
+	{
+		Options options;
+		options.optimize = (entry == MenuEntries::ASM2LLVM_VCPU_OPT || entry == MenuEntries::ASM2LLVM_NATIVE_OPT) ? true : false;
+		options.virtual_cpu = (entry == MenuEntries::ASM2LLVM_VCPU_OPT || entry == MenuEntries::ASM2LLVM_VCPU_NO_OPT) ? true : false;
+		options.messagebox = true;
+		std::string ir = asm2llvm.Asm2LLVM(block, options);
+		_plugin_logprintf("[" PLUGIN_NAME "]\n%s\n", ir.c_str());
+	} break;
+
+	case MenuEntries::ASSEMBLY:
 	{
 		Options options;
 		options.optimize = true;
+		options.virtual_cpu = false;
+		options.a2l_asm = true;
 		options.messagebox = true;
 		std::string ir = asm2llvm.Asm2LLVM(block, options);
 		_plugin_logprintf("[" PLUGIN_NAME "]\n%s\n", ir.c_str());
@@ -124,13 +140,5 @@ void GetBlockAndConvert(enum MenuEntries entry)
 
 PLUG_EXPORT void CBMENUENTRY(CBTYPE cbType, PLUG_CB_MENUENTRY* info)
 {
-	switch(MenuEntries(info->hEntry)) {
-	case MenuEntries::ASM2LLVM:
-		GetBlockAndConvert(MenuEntries(info->hEntry));
-		return;
-
-	case MenuEntries::REGISTERS:
-		GetBlockAndConvert(MenuEntries(info->hEntry));
-		return;
-	}
+	TranslateBlock(MenuEntries(info->hEntry));
 }
