@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PluginMainWindow</class>
+ <widget class="QMainWindow" name="PluginMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Asm2Llvm</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resource.qrc">
+    <normaloff>:/icons/images/icon.png</normaloff>:/icons/images/icon.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QPlainTextEdit" name="editText">
+        <property name="font">
+         <font>
+          <family>Lucida Console</family>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+        <property name="plainText">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuQtPlugin">
+    <property name="title">
+     <string>Asm2Llvm</string>
+    </property>
+   </widget>
+   <addaction name="menuQtPlugin"/>
+  </widget>
+  <action name="actionClearText">
+   <property name="text">
+    <string>&amp;Clear Text</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear Text</string>
+   </property>
+  </action>
+  <action name="actionAsm2Llvm">
+   <property name="text">
+    <string>QtPlugin</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

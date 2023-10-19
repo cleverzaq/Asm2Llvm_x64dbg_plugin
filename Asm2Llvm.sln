@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30524.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Asm2Llvm", "Asm2Llvm\Asm2Llvm.vcxproj", "{9CCCAE98-B542-4945-B0AE-D715140A50F5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Asm2Llvm", "Asm2LlvmPlugin\Asm2LlvmPlugin.vcxproj", "{9CCCAE98-B542-4945-B0AE-D715140A50F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

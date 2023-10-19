@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Asm2LlvmPlugin\debug">
+      <UniqueIdentifier>{f8ab85dd-babf-4fa9-8036-a29b843a262a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin">
+      <UniqueIdentifier>{326a54b7-b68b-446c-97ec-d0f8a69e0047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\release">
+      <UniqueIdentifier>{e5723100-377b-4721-8c21-062b715f760d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\images">
+      <UniqueIdentifier>{9e76e18e-d42b-4881-b411-38684685aa2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\pluginsdk">
+      <UniqueIdentifier>{b04bcf50-b6b1-4028-8d8b-835459b65bdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\pluginsdk\lz4">
+      <UniqueIdentifier>{563adc2a-58ae-41ea-8839-f2f876fba8b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\pluginsdk\dbghelp">
+      <UniqueIdentifier>{3358c508-e0ea-4ae5-9e0f-4f4c24acafdf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\pluginsdk\jansson">
+      <UniqueIdentifier>{c6d009e6-b6a4-46ca-8f14-49fbe8f1b498}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\pluginsdk\XEDParse">
+      <UniqueIdentifier>{d36810ce-cc2b-4390-8afc-1789c7a507d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\pluginsdk\TitanEngine">
+      <UniqueIdentifier>{b37bb3ac-5466-4e50-b628-a16279da1804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Asm2LlvmPlugin\pluginsdk\DeviceNameResolver">
+      <UniqueIdentifier>{6faa405c-83c7-4bd6-a94d-4bf2b83b94dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bddisasm\bddisasm\include">
+      <UniqueIdentifier>{fb92e35f-a243-4021-98b9-b6319084e198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bddisasm\bddisasm">
+      <UniqueIdentifier>{887d52a2-670c-458d-bc5b-12b3d0d985df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bddisasm">
+      <UniqueIdentifier>{0879ea0e-6d4e-4544-a887-cad752c0818c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bddisasm\inc">
+      <UniqueIdentifier>{adc1ca47-8eb7-43c2-b2c2-7bdef0548e78}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="debug\moc_predefs.h.cbt">
+      <Filter>Asm2LlvmPlugin\debug</Filter>
+    </CustomBuild>
+    <CustomBuild Include="release\moc_predefs.h.cbt">
+      <Filter>Asm2LlvmPlugin\release</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="images\icon.png">
+      <Filter>Asm2LlvmPlugin\images</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pluginsdk\_dbgfunctions.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_plugin_types.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_plugins.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_argument.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_assembler.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_bookmark.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_comment.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_debug.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_flag.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_function.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_gui.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_label.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_memory.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_misc.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_module.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_pattern.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_register.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_stack.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\_scriptapi_symbol.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\bridgegraph.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\bridgelist.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\bridgemain.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\lz4\lz4.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\lz4</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\lz4\lz4file.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\lz4</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\lz4\lz4hc.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\lz4</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\dbghelp\dbghelp.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\dbghelp</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\jansson\jansson.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\jansson</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\jansson\jansson_config.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\jansson</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\jansson\jansson_x64dbg.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\jansson</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\XEDParse\XEDParse.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\XEDParse</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\TitanEngine\TitanEngine.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\TitanEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginsdk\DeviceNameResolver\DeviceNameResolver.h">
+      <Filter>Asm2LlvmPlugin\pluginsdk\DeviceNameResolver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\instructions.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\mnemonics.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\nd_crt.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\prefixes.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\tabledefs.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\table_evex.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\table_root.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\table_vex.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\bddisasm\include\table_xop.h">
+      <Filter>bddisasm\bddisasm\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\inc\bddisasm.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\inc\constants.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\inc\cpuidflags.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\inc\disasmstatus.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\inc\disasmtypes.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\inc\registers.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\bddisasm\inc\version.h">
+      <Filter>bddisasm\inc</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin.h">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </ClInclude>
+    <ClInclude Include="QtPlugin.h">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </ClInclude>
+    <ClInclude Include="pluginmain.h">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\bddisasm\bddisasm\bddisasm.c">
+      <Filter>bddisasm\bddisasm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bddisasm\bddisasm\bdformat.c">
+      <Filter>bddisasm\bddisasm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bddisasm\bddisasm\bdhelpers.c">
+      <Filter>bddisasm\bddisasm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\bddisasm\bddisasm\crt.c">
+      <Filter>bddisasm\bddisasm</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin.cpp">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </ClCompile>
+    <ClCompile Include="PluginMainWindow.cpp">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </ClCompile>
+    <ClCompile Include="PluginTabWidget.cpp">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </ClCompile>
+    <ClCompile Include="QtPlugin.cpp">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </ClCompile>
+    <ClCompile Include="pluginmain.cpp">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="PluginMainWindow.h">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </QtMoc>
+    <QtMoc Include="PluginTabWidget.h">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="resource.qrc">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="PluginMainWindow.ui">
+      <Filter>Asm2LlvmPlugin</Filter>
+    </QtUic>
+  </ItemGroup>
+</Project>
